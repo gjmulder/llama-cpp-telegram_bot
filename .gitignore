@@ -1,1 +1,5 @@
-*telegram_token.txt
+telegram_token.txt
+var/telegram_token.txt
+var/models
+var/history
+__pycache__
