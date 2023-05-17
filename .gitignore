@@ -1,3 +1,4 @@
 *telegram_token.txt
-var/*
+var/models
+var/history
 __pycache__
