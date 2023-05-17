@@ -4,7 +4,7 @@ from threading import Thread, Lock
 from pathlib import Path
 import json
 import time
-from os import listdir
+from os import listdir, environ
 from os.path import exists
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext, Filters, CommandHandler, MessageHandler, CallbackQueryHandler
@@ -176,9 +176,10 @@ class TelegramBotWrapper:
         :return: None
         """
         if not bot_token:
-            token_file_name = token_file_name or self.token_file_path
-            with open(token_file_name, "r", encoding="utf-8") as f:
-                bot_token = f.read().strip()
+            bot_token = environ("BOT_TOKEN")
+            #token_file_name = token_file_name or self.token_file_path
+            #with open(token_file_name, "r", encoding="utf-8") as f:
+            #    bot_token = f.read().strip()
 
         self.updater = Updater(token=bot_token, use_context=True)
         self.updater.dispatcher.add_handler(

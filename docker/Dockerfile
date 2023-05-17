@@ -18,11 +18,12 @@ RUN git submodule update --init --recursive
 # Build llama-cpp-python w/CuBLAS
 RUN pip install scikit-build fastapi sse_starlette uvicorn && LLAMA_CUBLAS=1 python3 setup.py install --verbose
 
-# 
-
-# We need to set the host to 0.0.0.0 to allow outside access
-ENV HOST 0.0.0.0
+# Install llama-cpp-telegram_bot
+WORKDIR /usr/src/
+RUN git clone https://github.com/gjmulder/llama-cpp-telegram_bot.git
+WORKDIR /usr/src/llama-cpp-telegram_bot
+RUN git checkout olivia-dev && pip install -r requirements.txt
 
 # Run the server
-#CMD python3 -m llama_cpp.server
-CMD bash -c "ulimit -l unlimited && python3 -m llama_cpp.server"
+#CMD bash -c "ulimit -l unlimited && python3 -m llama_cpp.server"
+CMD bash -c "ulimit -l unlimited && python3 main.py"
