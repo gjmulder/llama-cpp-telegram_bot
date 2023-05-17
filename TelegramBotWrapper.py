@@ -176,7 +176,7 @@ class TelegramBotWrapper:
         :return: None
         """
         if not bot_token:
-            bot_token = environ("BOT_TOKEN")
+            bot_token = environ.get("BOT_TOKEN")
             #token_file_name = token_file_name or self.token_file_path
             #with open(token_file_name, "r", encoding="utf-8") as f:
             #    bot_token = f.read().strip()
