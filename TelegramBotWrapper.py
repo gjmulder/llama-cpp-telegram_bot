@@ -4,6 +4,7 @@ from threading import Thread, Lock
 from pathlib import Path
 import json
 import time
+from sys import argv
 from os import listdir
 from os.path import exists
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
@@ -100,7 +101,7 @@ class TelegramBotWrapper:
                  characters_dir_path="characters",
                  presets_dir_path="presets",
                  history_dir_path="history",
-                 token_file_path="telegram_token.txt",
+#                 token_file_path="telegram_token.txt",
                  admins_file_path="telegram_admins.txt",
                  config_file_path="telegram_config.cfg",
                  ):
@@ -123,7 +124,7 @@ class TelegramBotWrapper:
         self.history_dir_path = history_dir_path
         self.characters_dir_path = characters_dir_path
         self.presets_dir_path = presets_dir_path
-        self.token_file_path = token_file_path
+        self.token_file_path = argv[1]
         # Set bot mode
         self.bot_mode = bot_mode
         # Set default character json file
