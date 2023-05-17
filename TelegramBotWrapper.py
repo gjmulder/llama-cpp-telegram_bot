@@ -4,8 +4,7 @@ from threading import Thread, Lock
 from pathlib import Path
 import json
 import time
-from sys import argv
-from os import listdir
+from os import listdir, environ
 from os.path import exists
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext, Filters, CommandHandler, MessageHandler, CallbackQueryHandler
@@ -14,12 +13,8 @@ from telegram.error import BadRequest
 from typing import Dict
 from deep_translator import GoogleTranslator as Translator
 
-try:
-    from extensions.telegram_bot.TelegramBotUser import TelegramBotUser as User
-    import extensions.telegram_bot.TelegramBotGenerator as Generator
-except ImportError:
-    from TelegramBotUser import TelegramBotUser as User
-    import TelegramBotGenerator as Generator
+from TelegramBotUser import TelegramBotUser as User
+import TelegramBotGenerator as Generator
 
 
 class TelegramBotWrapper:
@@ -124,7 +119,7 @@ class TelegramBotWrapper:
         self.history_dir_path = history_dir_path
         self.characters_dir_path = characters_dir_path
         self.presets_dir_path = presets_dir_path
-        self.token_file_path = argv[1]
+        #self.token_file_path = 
         # Set bot mode
         self.bot_mode = bot_mode
         # Set default character json file
@@ -163,8 +158,8 @@ class TelegramBotWrapper:
                         self.presets_dir_path = s.split("=")[-1]
                     if "=" in s and s.split("=")[0] == "history_dir_path":
                         self.history_dir_path = s.split("=")[-1]
-                    if "=" in s and s.split("=")[0] == "token_file_path":
-                        self.token_file_path = s.split("=")[-1]
+#                    if "=" in s and s.split("=")[0] == "token_file_path":
+#                        self.token_file_path = s.split("=")[-1]
         self.load_preset(self.default_preset)
 
     # =============================================================================
@@ -177,9 +172,10 @@ class TelegramBotWrapper:
         :return: None
         """
         if not bot_token:
-            token_file_name = token_file_name or self.token_file_path
-            with open(token_file_name, "r", encoding="utf-8") as f:
-                bot_token = f.read().strip()
+            # token_file_name = token_file_name or self.token_file_path
+            # with open(token_file_name, "r", encoding="utf-8") as f:
+            #    bot_token = f.read().strip()
+            bot_token = os.environ.get("BOT_TOKEN").strip()
 
         self.updater = Updater(token=bot_token, use_context=True)
         self.updater.dispatcher.add_handler(

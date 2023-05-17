@@ -2,7 +2,7 @@ from llama_cpp import Llama
 import os
 
 #  Place where path to LLM file stored
-telegram_llm_model_path_file = "telegram_llm_model_path.txt"
+telegram_llm_model_path_file = os.environ.get("MODEL")
 
 
 n_ctx = 8196
