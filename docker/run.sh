@@ -9,4 +9,4 @@ docker run \
 --cap-add SYS_RESOURCE \
 -v /home/mulderg/Work/llama-cpp-telegram_bot/var:/usr/src/llama-cpp-telegram_bot/var \
 --gpus all \
-lct:olivia
+lct:$1
