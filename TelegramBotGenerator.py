@@ -1,17 +1,23 @@
-from llama_cpp import Llama
+from llama_cpp import Llama, LlamaCache
 import os
 
 #  Place where path to LLM file stored
 telegram_llm_model_path_file = "telegram_llm_model_path.txt"
 
 
-n_ctx = 8196
-seed = 0
 #  Get llm_generator
 with open(telegram_llm_model_path_file, "r") as model_path_file:
     data = model_path_file.read().rstrip()
-    llm_generator: Llama = Llama(model_path=data, n_ctx=n_ctx, n_gpu_layers=1000, seed=seed)
-
+    llm_generator: Llama = Llama(model_path=data,
+                                 use_mlock=True,
+                                 use_mmap=True,
+                                 n_ctx=8196,
+                                 n_gpu_layers=1000,
+                                 seed=42,
+                                 verbose=True)
+    
+    cache = LlamaCache(capacity_bytes=8*(1024 ** 3))
+    llm_generator.set_cache(cache) 
 
 def get_answer(
         prompt,
@@ -50,6 +56,6 @@ def get_model_list():
     return bins
 
 
-def load_model(model_file: str):
-    with open("models\\" + model_file, "r") as model:
-        llm_generator: Llama = Llama(model_path=model.read(), n_ctx=n_ctx, n_gpu_layers=1000, seed=seed)
+#def load_model(model_file: str):
+#    with open("models\\" + model_file, "r") as model:
+#        llm_generator: Llama = Llama(model_path=model.read(), n_ctx=n_ctx, n_gpu_layers=1000, seed=seed)

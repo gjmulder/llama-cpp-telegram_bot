@@ -22,7 +22,7 @@ RUN pip install scikit-build fastapi sse_starlette uvicorn && LLAMA_CUBLAS=1 pyt
 WORKDIR /usr/src/
 RUN git clone https://github.com/gjmulder/llama-cpp-telegram_bot.git
 WORKDIR /usr/src/llama-cpp-telegram_bot
-RUN git checkout olivia-dev && pip install -r requirements.txt
+RUN git checkout dr-seuss-dev && pip install -r requirements.txt
 
 # Run the server
 #CMD bash -c "ulimit -l unlimited && python3 -m llama_cpp.server"
