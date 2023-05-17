@@ -10,7 +10,7 @@ seed = 0
 #  Get llm_generator
 with open(telegram_llm_model_path_file, "r") as model_path_file:
     data = model_path_file.read().rstrip()
-    llm_generator: Llama = Llama(model_path=data, n_ctx=n_ctx, seed=seed)
+    llm_generator: Llama = Llama(model_path=data, n_ctx=n_ctx, n_gpu_layers=1000, seed=seed)
 
 
 def get_answer(
