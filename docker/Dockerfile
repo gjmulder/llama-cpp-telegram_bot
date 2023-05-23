@@ -24,6 +24,6 @@ RUN git clone https://github.com/gjmulder/llama-cpp-telegram_bot.git
 WORKDIR /usr/src/llama-cpp-telegram_bot
 RUN git checkout dr-seuss-dev && pip install -r requirements.txt
 
-# Run the server
+# Run the bot
 #CMD bash -c "ulimit -l unlimited && python3 -m llama_cpp.server"
 CMD bash -c "ulimit -l unlimited && python3 main.py"

@@ -10,8 +10,8 @@ class TelegramBotUser:
 
     default_messages_template = {  # dict of messages templates for various situations. Use _VAR_ replacement
         "mem_lost": "<b>MEMORY LOST!</b>\nSend /start or any text for new session.",  # refers to non-existing
-        "retyping": "<i>_NAME2_ retyping...</i>",  # added when "regenerate button" working
-        "typing": "<i>_NAME2_ typing...</i>",  # added when generating working
+        "retyping": "<i>_NAME2_ is retyping...</i>",  # added when "regenerate button" working
+        "typing": "<i>_NAME2_ is typing...</i>",  # added when generating working
         "char_loaded": "_NAME2_ LOADED!\n_OPEN_TAG__GREETING__CLOSE_TAG_ ",  # When new char loaded
         "preset_loaded": "LOADED PRESET: _OPEN_TAG__CUSTOM_STRING__CLOSE_TAG_",  # When new char loaded
         "model_loaded": "LOADED MODEL: _OPEN_TAG__CUSTOM_STRING__CLOSE_TAG_",  # When new char loaded
