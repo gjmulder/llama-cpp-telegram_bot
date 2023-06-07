@@ -11,7 +11,7 @@ with open(telegram_llm_model_path_file, "r") as model_path_file:
     llm_generator: Llama = Llama(model_path=data,
                                  use_mlock=True,
                                  use_mmap=True,
-                                 n_ctx=8196,
+                                 n_ctx=2048,
                                  n_gpu_layers=1000,
                                  seed=42,
                                  verbose=True)
