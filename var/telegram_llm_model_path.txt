@@ -1,1 +1,0 @@
-/usr/src/llama-cpp-telegram_bot/models/model.bin

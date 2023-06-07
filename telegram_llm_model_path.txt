@@ -1,1 +1,1 @@
-./var/telegram_llm_model_path.txt
+/usr/src/llama-cpp-telegram_bot/models/model.bin
