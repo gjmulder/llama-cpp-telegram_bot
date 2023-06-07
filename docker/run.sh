@@ -18,6 +18,7 @@ fi
 LOCAL_PATH=/home/mulderg/Work
 
 nice docker run \
+-e CUDA_VISIBLE_DEVICES=0 \
 -e BOT_TOKEN=$BOT_TOKEN \
 --cap-add SYS_RESOURCE \
 -v $LOCAL_PATH/llama-cpp-telegram_bot/var:/usr/src/llama-cpp-telegram_bot/var \
